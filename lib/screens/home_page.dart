@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Card(
+            child: Card( //---------------------------------------card one----------------------------
               color: Colors.grey[900],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -130,7 +130,7 @@ Pass Percentage: 84.2%''',
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(width: 100),
+                Spacer(),
                 TextButton(
                   onPressed: () {},
                   child: const Text(
@@ -141,41 +141,47 @@ Pass Percentage: 84.2%''',
                     backgroundColor: const Color(0xFFCEFF02),
                   ),
                 ),
+                const SizedBox(width: 10),
               ],
             ),
           ),
           const SizedBox(height: 10),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Card(
-              color: Colors.grey[900],
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              elevation: 4,
-              child: const Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'List',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text('''Syllabus.pdf
-Unit Content.pdf
-Question Paper.pdf
-Answer Key.pdf''', style: TextStyle(fontSize: 16, color: Colors.white70)),
-                  ],
-                ),
+  padding: const EdgeInsets.symmetric(horizontal: 20),
+  child: SizedBox(
+    width: double.infinity, // Makes the card stretch to full width (minus padding)
+    child: Card( //----------------------------------second card----------------------------------------
+      color: Colors.grey[900],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 4,
+      child: const Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'List',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-          ),
+            SizedBox(height: 20),
+            Text('''Syllabus.pdf
+Unit Content.pdf
+Question Paper.pdf
+Answer Key.pdf''', 
+              style: TextStyle(fontSize: 16, color: Colors.white70),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ),
+),
           const Spacer(),
           Align(alignment: Alignment.bottomCenter, child: _navBar()),
         ],
