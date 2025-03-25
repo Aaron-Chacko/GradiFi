@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart'; 
+import 'package:gradifi/screens/home_page.dart';
+import 'package:gradifi/screens/upload_landing.dart';
 
 void main() {
   runApp(const MyApp());
