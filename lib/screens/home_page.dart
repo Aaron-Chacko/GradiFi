@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradifi/screens/upload_landing.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,9 +63,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Card( //---------------------------------------card one----------------------------
+            child: Card(
+              //---------------------------------------card one----------------------------
               color: Colors.grey[900],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -133,12 +136,12 @@ Pass Percentage: 84.2%''',
                 Spacer(),
                 TextButton(
                   onPressed: () {},
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0xFFCEFF02),
+                  ),
                   child: const Text(
                     "Add Files",
                     style: TextStyle(color: Colors.black),
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color(0xFFCEFF02),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -147,41 +150,42 @@ Pass Percentage: 84.2%''',
           ),
           const SizedBox(height: 10),
           Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 20),
-  child: SizedBox(
-    width: double.infinity, // Makes the card stretch to full width (minus padding)
-    child: Card( //----------------------------------second card----------------------------------------
-      color: Colors.grey[900],
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      elevation: 4,
-      child: const Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'List',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text('''Syllabus.pdf
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              width:
+                  double
+                      .infinity, // Makes the card stretch to full width (minus padding)
+              child: Card(
+                //----------------------------------second card----------------------------------------
+                color: Colors.grey[900],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 4,
+                child: const Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'List',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text('''Syllabus.pdf
 Unit Content.pdf
 Question Paper.pdf
-Answer Key.pdf''', 
-              style: TextStyle(fontSize: 16, color: Colors.white70),
+Answer Key.pdf''', style: TextStyle(fontSize: 16, color: Colors.white70)),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ],
-        ),
-      ),
-    ),
-  ),
-),
+          ),
           const Spacer(),
           Align(alignment: Alignment.bottomCenter, child: _navBar()),
         ],
@@ -189,7 +193,18 @@ Answer Key.pdf''',
     );
   }
 
+  List<IconData> navIcons = [
+  Icons.home,
+  Icons.upload, // Keep as it is
+  Icons.person, // Change Scan icon to User icon
+];
+List<String> navTitles = [
+  "Home",
+  "Upload",
+  "Profile", // Change "Scan" to "Profile"
+];
   Widget _navBar() {
+    //----------------------------------------bottom nav bar--------------------------------
     return Container(
       height: 65,
       margin: EdgeInsets.only(right: 24, left: 24, bottom: 24),
@@ -211,7 +226,18 @@ Answer Key.pdf''',
                     setState(() {
                       selectedIndex = index;
                     });
+
+                    if (index == 1) {
+                      // "Upload" button tapped
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UploadLandingPage(),
+                        ),
+                      );
+                    }
                   },
+
                   child: Column(
                     children: [
                       Container(
