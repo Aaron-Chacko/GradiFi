@@ -26,62 +26,85 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: navIcons.map((icon) {
-          int index = navIcons.indexOf(icon);
-          bool isSelected = selectedIndex == index;
-          return Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () {
-                if (index != selectedIndex) {
-                  setState(() {
-                    selectedIndex = index;
-                  });
+        children:
+            navIcons.map((icon) {
+              int index = navIcons.indexOf(icon);
+              bool isSelected = selectedIndex == index;
+              return Material(
+                color: Colors.transparent,
+                child: GestureDetector(
+                  onTap: () {
+                    if (index != selectedIndex) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
 
-                  if (index == 1) {
-                    // Already on "Upload", do nothing
-                  } else if (index == 0) {
-                    Navigator.pushNamed(context, "/home");
-                  } else if (index == 2) {
-                    Navigator.pushNamed(context, "/profile");
-                  }
-                }
-              },
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.only(
-                      top: 15,
-                      bottom: 0,
-                      left: 35,
-                      right: 35,
-                    ),
-                    child: Icon(
-                      icon,
-                      color: isSelected ? const Color(0xFFCEFF02) : Colors.white,
-                    ),
+                      if (index == 1) {
+                        // Already on "Upload", do nothing
+                      } else if (index == 0) {
+                        Navigator.pushNamed(context, "/home");
+                      } else if (index == 2) {
+                        Navigator.pushNamed(context, "/profile");
+                      }
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(
+                          top: 15,
+                          bottom: 0,
+                          left: 35,
+                          right: 35,
+                        ),
+                        child: Icon(
+                          icon,
+                          color:
+                              isSelected
+                                  ? const Color(0xFFCEFF02)
+                                  : Colors.white,
+                        ),
+                      ),
+                      Text(
+                        navTitles[index],
+                        style: TextStyle(
+                          color:
+                              isSelected
+                                  ? const Color(0xFFCEFF02)
+                                  : Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    navTitles[index],
-                    style: TextStyle(
-                      color: isSelected ? const Color(0xFFCEFF02) : Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }).toList(),
+                ),
+              );
+            }).toList(),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> countries = ["USA", "UK", "India", "Canada", "Germany", "France", "Japan", "China", "Russia", "Italy"];
-    List<String> examLevels = ["High School", "Undergraduate", "Postgraduate", "Doctorate"];
+    List<String> countries = [
+      "USA",
+      "UK",
+      "India",
+      "Canada",
+      "Germany",
+      "France",
+      "Japan",
+      "China",
+      "Russia",
+      "Italy",
+    ];
+    List<String> examLevels = [
+      "High School",
+      "Undergraduate",
+      "Postgraduate",
+      "Doctorate",
+    ];
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -89,11 +112,12 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Color(0xFFCEFF02)),
         title: ShaderMask(
-          shaderCallback: (bounds) => const LinearGradient(
-            colors: [Colors.white, Color(0xFFCEFF02)],
-            begin: Alignment(0.2, 0.0),
-            end: Alignment(1.0, 0.0),
-          ).createShader(bounds),
+          shaderCallback:
+              (bounds) => const LinearGradient(
+                colors: [Colors.white, Color(0xFFCEFF02)],
+                begin: Alignment(0.2, 0.0),
+                end: Alignment(1.0, 0.0),
+              ).createShader(bounds),
           child: const Text(
             'GradiFi',
             style: TextStyle(
@@ -110,6 +134,16 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 20),
+              //--------------------------------------- Heading ----------------------------
+              const Text(
+                "Upload Exam Details",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFCEFF02),
+                ),
+              ),
               const SizedBox(height: 20),
               //--------------------------------------- Card  ----------------------------
               Card(
@@ -160,15 +194,18 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                               color: Colors.white,
                               fontSize: 16,
                             ),
-                            items: countries.map((String country) {
-                              return DropdownMenuItem<String>(
-                                value: country,
-                                child: Text(
-                                  country,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              );
-                            }).toList(),
+                            items:
+                                countries.map((String country) {
+                                  return DropdownMenuItem<String>(
+                                    value: country,
+                                    child: Text(
+                                      country,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedCountry = newValue;
@@ -213,15 +250,18 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                               color: Colors.white,
                               fontSize: 16,
                             ),
-                            items: examLevels.map((String level) {
-                              return DropdownMenuItem<String>(
-                                value: level,
-                                child: Text(
-                                  level,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              );
-                            }).toList(),
+                            items:
+                                examLevels.map((String level) {
+                                  return DropdownMenuItem<String>(
+                                    value: level,
+                                    child: Text(
+                                      level,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
                                 selectedLevel = newValue;
@@ -232,6 +272,66 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                //----------------------------------heading--------------------------------
+                "Upload Documents",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 25),
+              //--------------------------------------- Buttons ----------------------------
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/upload_prerequisite");
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFCEFF02),
+                  minimumSize: const Size(
+                    double.infinity,
+                    60,
+                  ), // Full width, increased height
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      15,
+                    ), // Same rounded edges as Card
+                  ),
+                  elevation: 4, // Added elevation
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ), // Added padding
+                ),
+                child: const Text(
+                  "Upload Prerequisites",
+                  style: TextStyle(color: Colors.black, fontSize: 18),
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  // Add navigation if needed
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFCEFF02),
+                  minimumSize: const Size(double.infinity, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  elevation: 4,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                ),
+                child: const Text(
+                  "Upload Answer Sheets",
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
               ),
             ],
