@@ -14,7 +14,7 @@ List<IconData> navIcons = [
   Icons.document_scanner_outlined,
 ];
 
-List<String> navTitles = ["Home", "Upload", "Scan"];
+List<String> navTitles = ["Home", "Upload", "Profile"];
 int selectedIndex = 0;
 
 class _HomePageState extends State<HomePage> {
