@@ -29,12 +29,11 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ShaderMask(
-              shaderCallback:
-                  (bounds) => LinearGradient(
-                    colors: [Colors.white, Color(0xFFCEFF02)],
-                    begin: Alignment(0.2, 0.0),
-                    end: Alignment(1.0, 0.0),
-                  ).createShader(bounds),
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [Colors.white, Color(0xFFCEFF02)],
+                begin: Alignment(0.2, 0.0),
+                end: Alignment(1.0, 0.0),
+              ).createShader(bounds),
               child: const Text(
                 'GradiFi',
                 style: TextStyle(
@@ -63,7 +62,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Card(
@@ -87,10 +85,10 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Insights',
                             style: TextStyle(
@@ -106,8 +104,8 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      const Text(
+                      SizedBox(height: 20),
+                      Text(
                         '''Total Strength: 69
 Absentees: 2
 Total Failures: 12
@@ -152,9 +150,7 @@ Pass Percentage: 84.2%''',
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(
-              width:
-                  double
-                      .infinity, // Makes the card stretch to full width (minus padding)
+              width: double.infinity,
               child: Card(
                 //----------------------------------second card----------------------------------------
                 color: Colors.grey[900],
@@ -193,16 +189,6 @@ Answer Key.pdf''', style: TextStyle(fontSize: 16, color: Colors.white70)),
     );
   }
 
-  List<IconData> navIcons = [
-  Icons.home,
-  Icons.upload, // Keep as it is
-  Icons.person, // Change Scan icon to User icon
-];
-List<String> navTitles = [
-  "Home",
-  "Upload",
-  "Profile", // Change "Scan" to "Profile"
-];
   Widget _navBar() {
     //----------------------------------------bottom nav bar--------------------------------
     return Container(
@@ -215,56 +201,56 @@ List<String> navTitles = [
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children:
-            navIcons.map((icon) {
-              int index = navIcons.indexOf(icon);
-              bool isSelected = selectedIndex == index;
-              return Material(
-                color: Colors.transparent,
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
+        children: navIcons.map((icon) {
+          int index = navIcons.indexOf(icon);
+          bool isSelected = selectedIndex == index;
+          return Material(
+            color: Colors.transparent,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  selectedIndex = index;
+                });
 
-                    if (index == 1) {
-                      // "Upload" button tapped
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UploadLandingPage(),
-                        ),
-                      );
-                    }
-                  },
-
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(
-                          top: 15,
-                          bottom: 0,
-                          left: 35,
-                          right: 35,
-                        ),
-                        child: Icon(
-                          icon,
-                          color: isSelected ? Color(0xFFCEFF02) : Colors.white,
-                        ),
+                if (index == 1) {
+                  // "Upload" button tapped
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UploadLandingPage(
+                        documentType: 'Your Document Type', // Update this with your document type
                       ),
-                      Text(
-                        navTitles[index],
-                        style: TextStyle(
-                          color: isSelected ? Color(0xFFCEFF02) : Colors.white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ],
+                    ),
+                  );
+                }
+              },
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(
+                      top: 15,
+                      bottom: 0,
+                      left: 35,
+                      right: 35,
+                    ),
+                    child: Icon(
+                      icon,
+                      color: isSelected ? Color(0xFFCEFF02) : Colors.white,
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
+                  Text(
+                    navTitles[index],
+                    style: TextStyle(
+                      color: isSelected ? Color(0xFFCEFF02) : Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class UploadLandingPage extends StatefulWidget {
-  const UploadLandingPage({super.key});
+  final String documentType;
+
+  const UploadLandingPage({super.key, required this.documentType});
 
   @override
   _UploadLandingPageState createState() => _UploadLandingPageState();
@@ -84,9 +86,12 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
       ),
     );
   }
-
-  @override
+  
+ @override
   Widget build(BuildContext context) {
+    // Accessing the documentType parameter
+    String documentType = widget.documentType;
+
     List<String> countries = [
       "USA",
       "UK",
@@ -136,8 +141,8 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
             children: [
               const SizedBox(height: 20),
               //--------------------------------------- Heading ----------------------------
-              const Text(
-                "Upload Exam Details",
+              Text(
+                "Upload $documentType Details", // Dynamically display the document type
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
