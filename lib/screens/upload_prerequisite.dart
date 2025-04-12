@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gradifi/screens/upload_landing.dart';
 
 class UploadPrerequisite extends StatefulWidget {
   const UploadPrerequisite({super.key});
@@ -9,7 +8,7 @@ class UploadPrerequisite extends StatefulWidget {
 }
 
 class _UploadPrerequisiteState extends State<UploadPrerequisite> {
-  int selectedIndex = 0; // 0 for Home, 1 for Profile
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +18,12 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
         backgroundColor: Colors.black,
         iconTheme: const IconThemeData(color: Color(0xFFCEFF02)),
         title: ShaderMask(
-          shaderCallback: (bounds) => const LinearGradient(
-            colors: [Colors.white, Color(0xFFCEFF02)],
-            begin: Alignment(0.2, 0.0),
-            end: Alignment(1.0, 0.0),
-          ).createShader(bounds),
+          shaderCallback:
+              (bounds) => const LinearGradient(
+                colors: [Colors.white, Color(0xFFCEFF02)],
+                begin: Alignment(0.2, 0.0),
+                end: Alignment(1.0, 0.0),
+              ).createShader(bounds),
           child: const Text(
             'GradiFi',
             style: TextStyle(
@@ -39,9 +39,9 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SizedBox(height: 20),
-              Center(
+            children: [
+              const SizedBox(height: 20),
+              const Center(
                 child: Text(
                   "Upload Prerequisite Documents",
                   style: TextStyle(
@@ -51,7 +51,38 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 30),
+              Column(
+                children: [
+                  _uploadCard(Icons.camera_alt, "Open Camera", () {
+                    // TODO
+                  }),
+                  const SizedBox(height: 32),
+                  _uploadCard(Icons.folder_open, "Browse Device", () {
+                    // TODO
+                  }),
+                ],
+              ),
+              const SizedBox(height: 40), // Add space between cards and button
+              ElevatedButton(
+                onPressed: () {
+                  // TODO: Implement the button functionality
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFCEFF02), // Button color
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Text(
+                  "Upload Answer Sheet",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),
@@ -83,7 +114,61 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
     );
   }
 
-  Widget _navItem(BuildContext context, IconData icon, String label, bool isSelected, VoidCallback onTap) {
+  Widget _uploadCard(IconData icon, String title, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      child: AnimatedScale(
+        scale: 1.05,
+        duration: const Duration(milliseconds: 100),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF1C1C1C), Color(0xFF444444)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 8,
+                spreadRadius: 1,
+                offset: const Offset(2, 2),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: const Color(0xFFCEFF02), size: 56),
+              const SizedBox(height: 18),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _navItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    bool isSelected,
+    VoidCallback onTap,
+  ) {
     return Expanded(
       child: GestureDetector(
         onTap: onTap,
@@ -94,14 +179,15 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
               icon,
               color: isSelected ? const Color(0xFFCEFF02) : Colors.white,
               size: 24,
-              shadows: isSelected
-                  ? [
-                      Shadow(
-                        color: const Color(0xFFCEFF02).withOpacity(0.8),
-                        blurRadius: 10,
-                      ),
-                    ]
-                  : [],
+              shadows:
+                  isSelected
+                      ? [
+                        Shadow(
+                          color: const Color(0xFFCEFF02).withOpacity(0.8),
+                          blurRadius: 10,
+                        ),
+                      ]
+                      : [],
             ),
             const SizedBox(height: 2),
             Text(
@@ -109,14 +195,15 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
               style: TextStyle(
                 color: isSelected ? const Color(0xFFCEFF02) : Colors.white,
                 fontSize: 10,
-                shadows: isSelected
-                    ? [
-                        Shadow(
-                          color: const Color(0xFFCEFF02).withOpacity(0.8),
-                          blurRadius: 10,
-                        ),
-                      ]
-                    : [],
+                shadows:
+                    isSelected
+                        ? [
+                          Shadow(
+                            color: const Color(0xFFCEFF02).withOpacity(0.8),
+                            blurRadius: 10,
+                          ),
+                        ]
+                        : [],
               ),
             ),
           ],
