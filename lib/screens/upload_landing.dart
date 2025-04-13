@@ -279,7 +279,7 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
               const Text(
                 //----------------------------------heading--------------------------------
                 "Upload Documents",
@@ -289,7 +289,7 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
               //--------------------------------------- Buttons ----------------------------
               ElevatedButton(
                 onPressed: () {
@@ -318,7 +318,7 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                 ),
               ),
               const SizedBox(height: 30),
-              ElevatedButton(
+              /*ElevatedButton(
                 onPressed: () {
                   // Add navigation if needed
                 },
@@ -338,7 +338,7 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                   "Upload Answer Sheets",
                   style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

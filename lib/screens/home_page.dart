@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 List<IconData> navIcons = [
   Icons.home_filled,
   Icons.cloud_upload_outlined,
-  Icons.document_scanner_outlined,
+  Icons.person_outline,
 ];
 
 List<String> navTitles = ["Home", "Upload", "Profile"];
