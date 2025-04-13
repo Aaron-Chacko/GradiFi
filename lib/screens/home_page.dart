@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradifi/screens/upload_landing.dart';
+import 'package:gradifi/screens/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,11 +30,12 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ShaderMask(
-              shaderCallback: (bounds) => LinearGradient(
-                colors: [Colors.white, Color(0xFFCEFF02)],
-                begin: Alignment(0.2, 0.0),
-                end: Alignment(1.0, 0.0),
-              ).createShader(bounds),
+              shaderCallback:
+                  (bounds) => LinearGradient(
+                    colors: [Colors.white, Color(0xFFCEFF02)],
+                    begin: Alignment(0.2, 0.0),
+                    end: Alignment(1.0, 0.0),
+                  ).createShader(bounds),
               child: const Text(
                 'GradiFi',
                 style: TextStyle(
@@ -201,56 +203,65 @@ Answer Key.pdf''', style: TextStyle(fontSize: 16, color: Colors.white70)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: navIcons.map((icon) {
-          int index = navIcons.indexOf(icon);
-          bool isSelected = selectedIndex == index;
-          return Material(
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
+        children:
+            navIcons.map((icon) {
+              int index = navIcons.indexOf(icon);
+              bool isSelected = selectedIndex == index;
+              return Material(
+                color: Colors.transparent,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = index;
+                    });
 
-                if (index == 1) {
-                  // "Upload" button tapped
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UploadLandingPage(
-                        documentType: 'Your Document Type', // Update this with your document type
+                    if (index == 1) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => UploadLandingPage(
+                                documentType: 'Your Document Type',
+                              ),
+                        ),
+                      );
+                    } else if (index == 2) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                      );
+                    }
+                  },
+
+                  child: Column(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(
+                          top: 15,
+                          bottom: 0,
+                          left: 35,
+                          right: 35,
+                        ),
+                        child: Icon(
+                          icon,
+                          color: isSelected ? Color(0xFFCEFF02) : Colors.white,
+                        ),
                       ),
-                    ),
-                  );
-                }
-              },
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                      top: 15,
-                      bottom: 0,
-                      left: 35,
-                      right: 35,
-                    ),
-                    child: Icon(
-                      icon,
-                      color: isSelected ? Color(0xFFCEFF02) : Colors.white,
-                    ),
+                      Text(
+                        navTitles[index],
+                        style: TextStyle(
+                          color: isSelected ? Color(0xFFCEFF02) : Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    navTitles[index],
-                    style: TextStyle(
-                      color: isSelected ? Color(0xFFCEFF02) : Colors.white,
-                      fontSize: 10,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }).toList(),
+                ),
+              );
+            }).toList(),
       ),
     );
   }

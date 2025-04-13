@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradifi/screens/reports.dart';
+import 'package:gradifi/screens/profile_page.dart';
+import 'package:gradifi/screens/home_page.dart';
 
 class UploadAnswer extends StatefulWidget {
   const UploadAnswer({super.key});
@@ -10,7 +12,7 @@ class UploadAnswer extends StatefulWidget {
 
 class _UploadAnswerState extends State<UploadAnswer> {
   // This screen is for uploading answer sheets
-  int selectedIndex = 0;
+  int selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +68,15 @@ class _UploadAnswerState extends State<UploadAnswer> {
                 ],
               ),
               const SizedBox(height: 50), // Add space between cards and button
-              ElevatedButton(//------------------------------------------------------button--------------------------------------
+              ElevatedButton(
+                //------------------------------------------------------button--------------------------------------
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Reports(), // Navigate to the reports screen
+                      builder:
+                          (context) =>
+                              const Reports(), // Navigate to the reports screen
                     ),
                   );
                 },
@@ -106,14 +111,28 @@ class _UploadAnswerState extends State<UploadAnswer> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _navItem(context, Icons.home, "Home", selectedIndex == 0, () {
-              setState(() {
-                selectedIndex = 0;
-              });
+              if (selectedIndex != 0) {
+                setState(() {
+                  selectedIndex = 0;
+                });
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  (route) => false,
+                );
+              }
             }),
             _navItem(context, Icons.person, "Profile", selectedIndex == 1, () {
-              setState(() {
-                selectedIndex = 1;
-              });
+              if (selectedIndex != 1) {
+                setState(() {
+                  selectedIndex = 1;
+                });
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                  (route) => false,
+                );
+              }
             }),
           ],
         ),

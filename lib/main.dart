@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gradifi/screens/home_page.dart';
+import 'package:gradifi/screens/profile_page.dart';
 import 'package:gradifi/screens/upload_answer.dart';
 import 'package:gradifi/screens/upload_prerequisite.dart'; // Import your new screen
 import 'package:gradifi/screens/reports.dart';
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
         "/upload_prerequisite": (context) => const UploadPrerequisite(),
         "/upload_answer": (context) => const UploadAnswer(),
         "/reports": (context) => const Reports(),
+        "/home": (context) => const HomePage(),
+        "/profile": (context) => const ProfilePage(),
       },
     );
   }

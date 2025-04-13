@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:gradifi/screens/upload_answer.dart'; 
+//import 'package:gradifi/screens/upload_answer.dart';
+import 'package:gradifi/screens/home_page.dart';
+import 'package:gradifi/screens/profile_page.dart';
 
 class UploadPrerequisite extends StatefulWidget {
   const UploadPrerequisite({super.key});
@@ -65,7 +67,8 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
                 ],
               ),
               const SizedBox(height: 40), // Add space between cards and button
-              ElevatedButton( // ------------------------------------------------button---------------------------------------------
+              ElevatedButton(
+                // ------------------------------------------------button---------------------------------------------
                 onPressed: () {
                   Navigator.pushNamed(context, "/upload_answer");
                 },
@@ -89,6 +92,7 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
         ),
       ),
       bottomNavigationBar: Container(
+        //--------------------------------------------------bottom navigation bar-------------------------------------
         height: 65,
         margin: const EdgeInsets.only(right: 24, left: 24, bottom: 24),
         decoration: BoxDecoration(
@@ -103,11 +107,21 @@ class _UploadPrerequisiteState extends State<UploadPrerequisite> {
               setState(() {
                 selectedIndex = 0;
               });
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+                (route) => false, // clear all previous routes
+              );
             }),
             _navItem(context, Icons.person, "Profile", selectedIndex == 1, () {
               setState(() {
                 selectedIndex = 1;
               });
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+                (route) => false,
+              );
             }),
           ],
         ),

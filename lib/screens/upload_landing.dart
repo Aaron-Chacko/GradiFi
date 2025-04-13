@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gradifi/screens/profile_page.dart';
+import 'package:gradifi/screens/home_page.dart';
 
 class UploadLandingPage extends StatefulWidget {
   final String documentType;
@@ -36,20 +38,43 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
                 color: Colors.transparent,
                 child: GestureDetector(
                   onTap: () {
-                    if (index != selectedIndex) {
-                      setState(() {
-                        selectedIndex = index;
-                      });
+                    setState(() {
+                      selectedIndex = index;
+                    });
 
-                      if (index == 1) {
-                        // Already on "Upload", do nothing
-                      } else if (index == 0) {
-                        Navigator.pushNamed(context, "/home");
-                      } else if (index == 2) {
-                        Navigator.pushNamed(context, "/profile");
-                      }
+                    if (index == 0) {
+                      // Home button tapped - replace all with HomePage
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        (route) => false, // This clears the stack
+                      );
+                    } else if (index == 1) {
+                      // Upload button tapped - replace all with UploadLandingPage
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder:
+                              (context) => UploadLandingPage(
+                                documentType: 'Your Document Type',
+                              ),
+                        ),
+                        (route) => false, // Clears the stack
+                      );
+                    } else if (index == 2) {
+                      // Profile button tapped - replace all with ProfilePage
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfilePage(),
+                        ),
+                        (route) => false, // Clears the stack
+                      );
                     }
                   },
+
                   child: Column(
                     children: [
                       Container(
@@ -86,8 +111,8 @@ class _UploadLandingPageState extends State<UploadLandingPage> {
       ),
     );
   }
-  
- @override
+
+  @override
   Widget build(BuildContext context) {
     // Accessing the documentType parameter
     String documentType = widget.documentType;
